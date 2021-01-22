@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPlusSquare} from '@fortawesome/free-solid-svg-icons'
 import Task from './Task'
 
-const ListTasks = ({tasks, changeTasks}) => {
+const ListTasks = ({tasks, changeTasks, showCompleted}) => {
 
   const toogleCompleted = (id)=>{
     console.log(`Toogle con ID`, id)
@@ -26,12 +26,12 @@ const ListTasks = ({tasks, changeTasks}) => {
 
 
   const deleteTask = (id)=>{
-    console.log(`Toogle con ID`, id)
+    console.log(`Eliminado con ID`, id)
     changeTasks(tasks.filter( (t)=>{
       if (t.id !== id){
         return t
       }
-      return; 
+      return 
     }))
   }
 
@@ -45,16 +45,34 @@ const ListTasks = ({tasks, changeTasks}) => {
         ?
         tasks.map((task)=>{
           /* Por un código más modular, cree {Task} por separado y lo llamo acá */
-         return  <Task   
+        if(showCompleted){
+
+          return  <Task   
                     /* agregamos el prop tasks para usarlo como variable en task.js */
                    task={task}
                    key={task.id}
                    toogleCompleted={toogleCompleted}
                    editTaskValue={editTaskValue}
                    deleteTask = {deleteTask}
-                   >
-                     
-                </Task>
+                   />
+
+        } else if(!task.completed){
+
+              return  <Task   
+                    /* agregamos el prop tasks para usarlo como variable en task.js */
+                   task={task}
+                   key={task.id}
+                   toogleCompleted={toogleCompleted}
+                   editTaskValue={editTaskValue}
+                   deleteTask = {deleteTask}
+                   />
+        }
+              return
+        
+                   
+
+
+              
         })
         /*   En caso contrario, mostrará en pantalla lo siguiente*/
         :

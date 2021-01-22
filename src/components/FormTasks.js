@@ -34,7 +34,9 @@ const FormTasks = ({tasks, changeTasks}) => {
           }     
         ]
     )
-      
+
+    //Al agregar colocamos vacio el campo
+    changeInputTask('')     
     
    
   }
