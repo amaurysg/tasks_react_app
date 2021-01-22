@@ -30,10 +30,11 @@ const FormTasks = ({tasks, changeTasks}) => {
            id: uuidv4() , 
            //Asignamos el valor e.target.value que ahora es de la variable {inputTask}
            text: inputTask, 
-           completed: false       
+           completed: false      
           }     
         ]
     )
+      
     
    
   }

@@ -3,7 +3,40 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPlusSquare} from '@fortawesome/free-solid-svg-icons'
 import Task from './Task'
 
-const ListTasks = ({tasks}) => {
+const ListTasks = ({tasks, changeTasks}) => {
+
+  const toogleCompleted = (id)=>{
+    console.log(`Toogle con ID`, id)
+    changeTasks(tasks.map( (t)=>{
+      if (t.id === id){
+        return {...t, completed: !t.completed}
+      }
+      return t
+    }))
+  }
+  const editTaskValue = (id, newText)=>{
+    console.log(`Toogle con ID`, id)
+    changeTasks(tasks.map( (t)=>{
+      if (t.id === id){
+        return {...t, text: newText}
+      }
+      return t
+    }))
+  }
+
+
+  const deleteTask = (id)=>{
+    console.log(`Toogle con ID`, id)
+    changeTasks(tasks.filter( (t)=>{
+      if (t.id !== id){
+        return t
+      }
+      return; 
+    }))
+  }
+
+  
+
   return (
    <ul className="lista-tareas">
        { 
@@ -15,7 +48,12 @@ const ListTasks = ({tasks}) => {
          return  <Task   
                     /* agregamos el prop tasks para usarlo como variable en task.js */
                    task={task}
-                   key={task.id}>
+                   key={task.id}
+                   toogleCompleted={toogleCompleted}
+                   editTaskValue={editTaskValue}
+                   deleteTask = {deleteTask}
+                   >
+                     
                 </Task>
         })
         /*   En caso contrario, mostrará en pantalla lo siguiente*/

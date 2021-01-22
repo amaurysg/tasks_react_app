@@ -35,7 +35,7 @@ const App=() =>{
       <FormTasks tasks={tasks} changeTasks={changeTasks} />
 
       {/* Agregamos ListTasks */}
-      <ListTasks tasks={tasks} > ListTasks</ListTasks>
+      <ListTasks tasks={tasks} changeTasks={changeTasks} > ListTasks</ListTasks>
     
     </div>
   );
